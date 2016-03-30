@@ -1,5 +1,3 @@
-__author__ = 'zackory'
-
 import pygame
 
 class Joystick:

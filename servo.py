@@ -1,3 +1,5 @@
+import pigpio
+
 class Servo:
     gpio = None
 

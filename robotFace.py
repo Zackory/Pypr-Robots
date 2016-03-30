@@ -3,7 +3,7 @@ import servo
 import joystick
 
 joy = joystick.Joystick(0)
-magnitude = 1 / 50.0
+magnitude = 1 / 10.0
 
 leftEye = servo.Servo(17, 1000)
 rightEye = servo.Servo(18, 1000)
@@ -32,4 +32,4 @@ except:
 
 leftEye.stop()
 rightEye.stop()
-rightEye.stopGpio()
+leftEye.stopGpio()
