@@ -5,8 +5,20 @@ import joystick
 joy = joystick.Joystick(0)
 magnitude = 1 / 10.0
 
-leftEye = servo.Servo(17, 1000)
-rightEye = servo.Servo(18, 1000)
+leftEye = servo.Servo(17, 950)
+rightEye = servo.Servo(18, 950)
+
+if False:
+    # Test that both eyes are moving!
+    for i in xrange(-10, 11):
+        leftEye.setPosition(i / 10.0)
+        rightEye.setPosition(i / 10.0)
+        time.sleep(0.5)
+    exit()
+
+# Start eyes at an initial position
+leftEye.setPosition(-1.0)
+rightEye.setPosition(1.0)
 
 done = False
 while not done:
@@ -18,10 +30,11 @@ while not done:
     LThumbX = joy.get(joy.LThumbX)
     if abs(LThumbX) >= 0.1:
         leftEye.alterPosition(LThumbX * magnitude)
+        rightEye.alterPosition(-LThumbX * magnitude)
 
-    RThumbX = joy.get(joy.RThumbX)
-    if abs(RThumbX) >= 0.1:
-        rightEye.alterPosition(RThumbX * magnitude)
+    #LThumbY = joy.get(joy.LThumbY)
+    #if abs(LThumbY) >= 0.1:
+    #    rightEye.alterPosition(LThumbY * magnitude)
 
     time.sleep(0.05)
 

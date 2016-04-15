@@ -32,7 +32,7 @@ class Joystick:
             return
         self.joystick = pygame.joystick.Joystick(index)
         self.joystick.init()
-        print 'Joystick %i initalized, press A to exit' % index
+        print 'Joystick %i initalized, press Right Bumper (R1) to exit' % index
 
         # Fix error of triggers not appearing as axes
         if self.joystick.get_numaxes() < 6:
@@ -64,10 +64,19 @@ class Joystick:
 
     # Helper functions
     def button(self, i):
+        if i > self.joystick.get_numbuttons():
+            print 'Unable to find button %d, there are only %d buttons' % (i, self.joystick.get_numbuttons())
+            return False
         return self.joystick.get_button(i) == 1
     def axis(self, i):
+        if i > self.joystick.get_numaxes():
+            print 'Unable to find axis %d, there are only %d axes' % (i, self.joystick.get_numaxes())
+            return 0
         return self.joystick.get_axis(i)
     def hat(self, i):
+        if i > self.joystick.get_numhats():
+            print 'Unable to find hat %d, there are only %d hats' % (i, self.joystick.get_numhats())
+            return 0
         return self.joystick.get_hat(i)
     def displayJoystickEvents(self):
         print 'Buttons:', [self.button(i) for i in xrange(self.joystick.get_numbuttons())], \
