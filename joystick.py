@@ -24,6 +24,7 @@ class Joystick:
         self.joystick = None
         if index is not None:
             self.setJoystick(index)
+        self.buttonToggles = [False]*6
 
     def setJoystick(self, index):
         if index >= pygame.joystick.get_count():
@@ -49,6 +50,17 @@ class Joystick:
     def get(self, event):
         t, i = event # (type, index)
         return self.button(i) if t == 0 else self.axis(i) if t == 1 else self.hat(i)
+
+    def getToggle(self, event):
+        # Returns true only once when a button has been pressed and released
+        t, i = event
+        if t != 0: return False
+        if self.button(i):
+            self.buttonToggles[i] = True
+        elif self.buttonToggles[i]:
+            self.buttonToggles[i] = False
+            return True
+        return False
 
     # Helper functions
     def button(self, i):

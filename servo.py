@@ -21,7 +21,7 @@ class Servo:
             # Set servo pulse width to adjust speed of continuous servo
             self.speed = speed
             # Safe range (1000-2000), <1500 backwards, >1500 forwards, 1500 stopped (max range of 500-2500)
-            Servo.gpio.set_servo_pulsewidth(self.port, 0 if speed == 0 else 1500 + speed*500)
+            Servo.gpio.set_servo_pulsewidth(self.port, 0 if speed == 0 else 1500 + speed*self.positionRange)
 
     # Position between -1.0 and 1.0
     def setPosition(self, position):
