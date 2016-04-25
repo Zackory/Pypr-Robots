@@ -45,8 +45,8 @@ while not done:
         # http://home.kendra.com/mauser/Joystick.html
         RThumbY = joy.get(joy.RThumbY)
         RThumbX = joy.get(joy.RThumbX)
-        v = (1-abs(RThumbX))*RThumbY + RThumbY
-        w = (1-abs(RThumbY))*RThumbX + RThumbX
+        v = (1-abs(RThumbY))*RThumbX + RThumbX
+        w = (1-abs(RThumbX))*RThumbY + RThumbY
         right = (v + w) / 2.0
         left = (v - w) / 2.0
         if abs(right) >= 0.1 or abs(left) >= 0.1:

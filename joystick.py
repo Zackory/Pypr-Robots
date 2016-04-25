@@ -16,6 +16,11 @@ class Joystick:
     RThumbY = (1, 4)
     RTrigger = (1, 5)
 
+    LHat = (2, 0, -1)
+    RHat = (2, 0, 1)
+    UHat = (2, 0, 1)
+    DHat = (2, 0, -1)
+
     def __init__(self, index=None):
         # Initialize joystick
         pygame.init()
@@ -77,7 +82,7 @@ class Joystick:
         if i > self.joystick.get_numhats():
             print 'Unable to find hat %d, there are only %d hats' % (i, self.joystick.get_numhats())
             return 0
-        return self.joystick.get_hat(i)
+        return self.joystick.get_hat(0)[i[0]] == i[1]
     def displayJoystickEvents(self):
         print 'Buttons:', [self.button(i) for i in xrange(self.joystick.get_numbuttons())], \
             '| Axes:', [self.axis(i) for i in xrange(self.joystick.get_numaxes())], \
