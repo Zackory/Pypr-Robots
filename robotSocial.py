@@ -32,7 +32,6 @@ while not done:
     # Process all joystick events
     joy.processEvents()
     done = joy.get(joy.RBumper)
-    joy.displayJoystickEvents()
     if joy.getToggle(joy.LBumper):
         connected = not connected
         leftEye.setPosition(1.0)

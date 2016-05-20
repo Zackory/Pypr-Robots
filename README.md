@@ -64,7 +64,8 @@ Attach the robot's left eye PWM to port 17 and right eye PWM to port 18 using pi
 
 
 ## Connecting to Your Raspberry Pi
-Find the local IP address of your raspberry pi (most likely looks something like `192.168.x.x`).  
+Find the local IP address of your raspberry pi through your WiFi Router (most likely looks something like `192.168.x.x`).  
+If you are unable to find your Raspberry Pi's local IP address, then you can set the Raspberry Pi to have a fixed IP address (tutorials of how to do this can be found online).  
 Run `ssh pi@192.168.x.x` and use 'raspberry' for a password.
 
 
@@ -77,7 +78,7 @@ Then navigate into the cloned repository `cd Proto-Bots/`.
 Next we need to install 'pigpio' for controlling the servos through python.  
 You can install pigpio using the official instructions [here](http://abyz.co.uk/rpi/pigpio/download.html).
 or by using the terminal commands copied below for convenience.  
-'''
+```
 rm pigpio.zip
 sudo rm -rf PIGPIO
 wget abyz.co.uk/rpi/pigpio/pigpio.zip
@@ -86,6 +87,10 @@ cd PIGPIO
 make -j4
 sudo make install
 ```
-### Need to run `sudo pigpiod` on startup?
-Next we need to install 'pygame' so that we can access joystick controllers using python.
+We then need to make sure pigpio is started each time the Raspberry Pi starts up.  
+Run `sudo nano /etc/rc.local` and add `pigpiod` at the end of the file right before the line `exit 0`.  
+Next we need to install 'pygame' so that we can access joystick controllers using python.  
 To install pygame you can use `sudo apt-get install pygame`.  
+Let's reboot once more `sudo reboot`, then we are good to go!  
+
+Run `sudo python robotSocial.py` to launch the joystick controller for the social robot.
