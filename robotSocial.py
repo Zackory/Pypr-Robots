@@ -10,11 +10,25 @@ rightEye = servo.Servo(18, 900)
 leftEar = servo.Servo(22, 900)
 rightEar = servo.Servo(23, 900)
 
-if False:
+# Add invert eyes boolean
+
+if True:
     # Test that both eyes and ears are moving!
+    leftEye.setPosition(1)
+    rightEye.setPosition(-1)
+    leftEar.setPosition(-1)
+    rightEar.setPosition(1)
+    time.sleep(1)
+    leftEye.stop()
+    rightEye.stop()
+    leftEar.stop()
+    rightEar.stop()
+    time.sleep(1)
     for i in xrange(-10, 11):
-        leftEye.setPosition(i / 10.0)
-        rightEye.setPosition(-i / 10.0)
+        leftEye.setPosition(-i / 10.0)
+        rightEye.setPosition(i / 10.0)
+        time.sleep(0.5)
+    for i in xrange(-10, 11):
         leftEar.setPosition(i / 10.0)
         rightEar.setPosition(-i / 10.0)
         time.sleep(0.5)

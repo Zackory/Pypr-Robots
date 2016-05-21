@@ -35,7 +35,7 @@ while not done:
     # Update servos for eye positions based on joystick
     LThumbX = joy.get(joy.LThumbX)
     if abs(LThumbX) >= 0.1:
-        base.alterPosition(LThumbX * magnitude)
+        base.alterPosition(-LThumbX * magnitude)
 
     LThumbY = joy.get(joy.LThumbY)
     if abs(LThumbY) >= 0.1:
@@ -43,7 +43,7 @@ while not done:
 
     RThumbY = joy.get(joy.RThumbY)
     if abs(RThumbY) >= 0.1:
-        forearm.alterPosition(RThumbY * magnitude)
+        forearm.alterPosition(-RThumbY * magnitude)
 
     RThumbX = joy.get(joy.RThumbX)
     if abs(RThumbX) >= 0.1:
