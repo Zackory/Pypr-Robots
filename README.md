@@ -1,5 +1,5 @@
-# Proto-Bots
-Modular and interactive cardboard prototyping robots.
+# Pypr Robots
+Paper Prototyping of Social Robots for human-robot interaction.
 
 
 ## Setting Up Raspbian on Raspberry Pi
@@ -72,9 +72,12 @@ Run `ssh pi@192.168.x.x` and use 'raspberry' for a password.
 ## Get Your Robot Moving!
 Once you are connected to your Raspberry Pi through ssh we need to update the software.  
 First, let's expand the main partition. Do so by typing `sudo raspi-config` and choosing the 'Expand Filesystem' option.  
+Now let's clone the git repository using the command `git clone https://github.com/Zackory/Pypr-Robots.git`.  
+At this point you can automate the entire setup process by running `./setup.sh`.  
+Once the Raspberry Pi is setup, run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.
+
+If you would like to manually set up the Raspberry Pi, then continue reading.
 Next, run `sudo apt-get update` followed by `sudo apt-get upgrade`. Lastly, reboot your Pi `sudo reboot`.  
-Now let's clone the git repository using the command `git clone https://github.com/Zackory/Proto-Bots`.  
-Then navigate into the cloned repository `cd Proto-Bots/`.  
 Next we need to install 'pigpio' for controlling the servos through python.  
 You can install pigpio using the official instructions [here](http://abyz.co.uk/rpi/pigpio/download.html).
 or by using the terminal commands copied below for convenience.  
@@ -93,4 +96,4 @@ Next we need to install 'pygame' so that we can access joystick controllers usin
 To install pygame you can use `sudo apt-get install pygame`.  
 Let's reboot once more `sudo reboot`, then we are good to go!  
 
-Run `sudo python robotSocial.py` to launch the joystick controller for the social robot.
+If you have not already done so, run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.
