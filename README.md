@@ -1,5 +1,8 @@
 # Pypr Robots
-Paper Prototyping of Social Robots for human-robot interaction.
+Social robots for human-robot interaction education.  
+Want to view the 3D models or cardboard cutout instructions for the robots? Checkout the `Models-Instructions` directory.  
+The rest of this file provides programming setup and wiring instructions for the robots!  
+![alt text](images/group.jpg "A group photo of the three Pypr robots chillin.")  
 
 
 ## Setting Up Raspbian on Raspberry Pi
@@ -20,7 +23,7 @@ Congratulations, Raspbian is now setup on your Raspberry Pi.
 
 
 ## Setting Up Networking on Raspberry Pi
-We will be creating a headless Raspberry Pi (no ethernet cable needed)!  
+We will be creating a headless Raspberry Pi (no ethernet cable needed)! To do so, you should connect a USB Wi-Fi adapter to your Raspberry Pi. Below is a list of files that can be found in our newly created Raspbian OS which need to be updated. **NOTE: If you are using Linux, make sure you are updating the Raspbian version of these files which exist on the SD card and not the versions which exist on your personal Linux machine.**  
 In /etc/network/interface:  
 ```bash
 auto lo
@@ -60,7 +63,18 @@ In /etc/hosts, last line should be:
 
 
 ## Wiring your robot
-Attach the robot's left eye PWM to port 17 and right eye PWM to port 18 using pinout [here](https://www.raspberrypi.org/documentation/usage/gpio-plus-and-raspi2/).
+A GPIO pinout for the Raspberry Pi can be found [here](https://www.raspberrypi.org/documentation/usage/gpio-plus-and-raspi2/) and is also displayed below for convenience. The pinout provides a graphical display for the numbering of each pin on the Raspberry Pi.  
+![alt text](images/gpio-numbers-pi2.png "GPIO Pinout")  
+
+#### Humanoid Robot
+Attach the robot's left eye servo signal PWM cable (likely the orange or white cable) to port 17 and right eye PWM cable to port 18 using the pinout above. Additionally, connect the left and right ears to ports 22 and 23, respectively.  
+If your servos are spinning in the opposite direction when tested, try flipping the `invert` variable to `True` within `robot-humanoid/humanoid.py`.
+
+#### Courier Robot
+Attach the back left and back right servos to PWM ports 17 and 18 respectively. Additionally, attach the front left servo to port 22 and the front right servo to port 23.
+
+#### Robotic Arm
+Attach the base servo (beneath the rotating base platform) to PWM port 17 on the Raspberry Pi. The gripper servo can be attached to port 18. The arm servo (mounted on the right side of the rotating platform when facing the robotic arm) may be connected to port 22, whereas the forearm servo (mounted on the left side of the platform) should be connected to port 23.
 
 
 ## Connecting to Your Raspberry Pi
@@ -74,26 +88,8 @@ Once you are connected to your Raspberry Pi through ssh we need to update the so
 First, let's expand the main partition. Do so by typing `sudo raspi-config` and choosing the 'Expand Filesystem' option.  
 Now let's clone the git repository using the command `git clone https://github.com/Zackory/Pypr-Robots.git`.  
 At this point you can automate the entire setup process by running `./setup.sh`.  
-Once the Raspberry Pi is setup, run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.
+Once the Raspberry Pi is setup, run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.  
+Additionally, the commands `sudo python ~/Pypr-Robots/robot-arm/arm.py` and `sudo python ~/Pypr-Robots/robot-courier/courier.py` can be ran to launch the controllers for the robotic arm and courier robot respectively.  
 
-If you would like to manually set up the Raspberry Pi, then continue reading.
-Next, run `sudo apt-get update` followed by `sudo apt-get upgrade`. Lastly, reboot your Pi `sudo reboot`.  
-Next we need to install 'pigpio' for controlling the servos through python.  
-You can install pigpio using the official instructions [here](http://abyz.co.uk/rpi/pigpio/download.html).
-or by using the terminal commands copied below for convenience.  
-```
-rm pigpio.zip
-sudo rm -rf PIGPIO
-wget abyz.co.uk/rpi/pigpio/pigpio.zip
-unzip pigpio.zip
-cd PIGPIO
-make -j4
-sudo make install
-```
-We then need to make sure pigpio is started each time the Raspberry Pi starts up.  
-Run `sudo nano /etc/rc.local` and add `pigpiod` at the end of the file right before the line `exit 0`.  
-Next we need to install 'pygame' so that we can access joystick controllers using python.  
-To install pygame you can use `sudo apt-get install pygame`.  
-Let's reboot once more `sudo reboot`, then we are good to go!  
 
-If you have not already done so, run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.
+## 
