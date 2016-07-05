@@ -1,12 +1,14 @@
 # Pypr Robots
 Social robots for human-robot interaction education.  
+
+![alt text](images/group.jpg "A group photo of the three Pypr robots chillin.")  
+
 Want to view the 3D models or cardboard cutout instructions for the robots? Checkout the `Models-Instructions` directory.  
 The rest of this file provides programming setup and wiring instructions for the robots!  
-![alt text](images/group.jpg "A group photo of the three Pypr robots chillin.")  
 
 
 ## Setting Up Raspbian on Raspberry Pi
-Note: You can use the instructions provided [here](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
+**Note:** You can use the instructions provided [here](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
 or you can use the instructions provided below if you are using Ubuntu.
 
 Install Raspbian from [here](https://www.raspberrypi.org/downloads/raspbian/) (the full version, not Lite version, otherwise ssh won't be setup for us).  
@@ -78,7 +80,7 @@ Attach the base servo (beneath the rotating base platform) to PWM port 17 on the
 
 
 ## Connecting to Your Raspberry Pi
-Find the local IP address of your raspberry pi through your WiFi Router (most likely looks something like `192.168.x.x`).  
+If you have not already done so, boot up your Raspberry Pi by connecting the USB power cable. Find the local IP address of your raspberry pi through your WiFi Router (most likely looks something like `192.168.x.x`).  
 If you are unable to find your Raspberry Pi's local IP address, then you can set the Raspberry Pi to have a fixed IP address (tutorials of how to do this can be found online).  
 Run `ssh pi@192.168.x.x` and use 'raspberry' for a password.
 
@@ -88,8 +90,8 @@ Once you are connected to your Raspberry Pi through ssh we need to update the so
 First, let's expand the main partition. Do so by typing `sudo raspi-config` and choosing the 'Expand Filesystem' option.  
 Now let's clone the git repository using the command `git clone https://github.com/Zackory/Pypr-Robots.git`.  
 At this point you can automate the entire setup process by running `./setup.sh`.  
-Once the Raspberry Pi is setup, run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.  
-Additionally, the commands `sudo python ~/Pypr-Robots/robot-arm/arm.py` and `sudo python ~/Pypr-Robots/robot-courier/courier.py` can be ran to launch the controllers for the robotic arm and courier robot respectively.  
+Once the setup process is complete, you may connect a USB joystick to the Raspberry Pi and run `sudo python ~/Pypr-Robots/robot-humanoid/humanoid.py` to launch the joystick controller for the humanoid robot.  
+Additionally, the commands `sudo python ~/Pypr-Robots/robot-arm/arm.py` and `sudo python ~/Pypr-Robots/robot-courier/courier.py` can be run to launch the controllers for the robotic arm and courier robot respectively.  
 
 
 ## 
